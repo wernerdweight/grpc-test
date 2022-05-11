@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package ovm;
+
+service OtazkyVaclavaMoravce {
+    rpc VaclavMoravec (MoravecRequest) returns (Response) {}
+    rpc VaclavKlaus (KlausRequest) returns (Response) {}
+    rpc MilosZeman (ZemanRequest) returns (Response) {}
+}
+
+message MoravecRequest {
+    Mood mood = 1;
+}
+
+message KlausRequest {
+    Mood mood = 1;
+    Sport sport = 2;
+}
+
+message ZemanRequest {
+    Mood mood = 1;
+    Booze booze = 2;
+}
+
+message Response {
+    repeated Sentence sentences = 1;
+    int32 score = 2;
+}
+
+message Sentence {
+    string text = 1;
+}
+
+enum Booze {
+    BECHER = 0;
+    FERNET = 1;
+    JELINEK = 2;
+    VIROZA = 3;
+}
+
+enum Sport {
+    TENNIS = 0;
+    SKI = 1;
+    F1 = 2;
+    EGO = 3;
+}
+
+enum Mood {
+    GOOD = 0;
+    NOT_GREAT_NOT_TERRIBLE = 2;
+    BAD = 3;
+    NOT_THIS_SHIT_AGAIN = 4;
+}
